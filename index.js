@@ -99,7 +99,7 @@ const HomePage = Vue.createApp({
             this.loaded=true
             
         }).then(()=>{
-            let toggleButton = document.querySelector('.toggle-menu');
+            setTimeout(()=>{let toggleButton = document.querySelector('.toggle-menu');
             let navBar = document.querySelector('.nav-bar');
             toggleButton.addEventListener('click', function () {
                 navBar.classList.toggle('toggle');
@@ -113,7 +113,8 @@ const HomePage = Vue.createApp({
                 delay: 5000,
                 disableOnInteraction: false,
             },
-            });
+            });},500)
+            
         })
     }
 })
