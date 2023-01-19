@@ -18,6 +18,7 @@ ul{
     justify-content: space-between;
 }
 #HomePage{
+    width: 100%;
     min-height: 500px;
     // background-color: rgba(37, 37, 37, 1)
 }
@@ -208,6 +209,7 @@ input[type="radio"]:checked + .color {
 .load{
     position: absolute;
     left: 50%;
+    transform: translate(-50%,0);
     top:50%;
 }
 #contact{

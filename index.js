@@ -104,7 +104,7 @@ const HomePage = Vue.createApp({
             toggleButton.addEventListener('click', function () {
                 navBar.classList.toggle('toggle');
             });
-            var swiper = new Swiper(".mySwiper", {
+            let swiper = new Swiper(".mySwiper", {
                 pagination: {
                 el: ".swiper-pagination",
             },
