@@ -108,7 +108,7 @@ const HomePage = Vue.createApp({
                 pagination: {
                 el: ".swiper-pagination",
             },
-            speed: 1000,
+            speed: 800,
             autoplay: {
                 delay: 5000,
                 disableOnInteraction: false,
