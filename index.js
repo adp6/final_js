@@ -15,7 +15,13 @@ const HomePage = Vue.createApp({
             colorArr:[],
             buyBtn:true,
             animation:false,
-            email:''
+            email:'',
+            basket:[],
+            basketShow:false,
+            form:false,
+            total:0,
+            phone:'',
+            address:""
         }
     },
     methods:{
@@ -23,25 +29,58 @@ const HomePage = Vue.createApp({
             this.btn=true,
             this.btnVal=val
             this.animation=true
+            this.basket.forEach((v)=>{
+                v.quantity=1;
+            })
+            this.basketShow=false
+        },
+        close(){
+            this.form=false
+            this.total=0
+            this.basket.forEach((v)=>{
+                v.quantity=1;
+            })
         },
         homePage(){
             this.btn=false
             this.size=0
             this.color=''
         },
-        buy(size,color){
+        final(){
+            this.form=true
+            
+            this.basket.forEach((v)=>{
+                let price = v.price.split('$')
+                this.total += price[1]*v.quantity
+                this.total = parseInt(this.total * 100) / 100
+            })
+        },
+        removeFromBasket(shoe){
+            for(let i = 0;i<this.basket.length;i++){
+                if(this.basket[i]==shoe)this.basket.splice(i,1)
+            }
+        },
+        buy(size,color,shoe){
             this.size=size
             this.color=color
             if(this.size!=0 && this.color.length>0){
                this.buyBtn = true
                this.btn=false
-               alert('Thanks for your purchase')
+               alert('Item has been added to your cart')
                this.size=0
                 this.color=''
+                shoe.quantity = 1;
+                this.basket.push(shoe)
             }
             else{
                 this.buyBtn = false
             }
+        },
+        basketClick(){
+            this.basketShow = !this.basketShow
+            this.basket.forEach((v)=>{
+                v.quantity=1;
+            })
         },
         splitJoin(theText){
             return theText.split(';');
@@ -49,6 +88,19 @@ const HomePage = Vue.createApp({
         subscribeLetter(){
             alert('succesfully subscribed')
             this.email=''
+        },
+        submitBuy(){
+            if(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/.test(this.phone) && /^(\d+) ?([A-Za-z](?= ))? (.*?) ([^ ]+?) ?((?<= )APT)? ?((?<= )\d*)?$/.test(this.address)){
+                alert('Thanks for your purchace')
+                this.form=false
+                this.email=''
+                this.phone=''
+                this.basket=[]
+                this.basketShow=false
+            }
+            else{
+                alert('invalid phone number or address')
+            }
         }
     },
     mounted(){
@@ -119,4 +171,3 @@ const HomePage = Vue.createApp({
     }
 })
 HomePage.mount('#HomePage')
-
