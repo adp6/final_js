@@ -24,10 +24,11 @@
                 <div></div>
                 <div></div>
                 <div></div>
-                
             </div>
         </div>
         
+
+
         <div v-if="loaded==true">
             <div v-show="btn==false">
                 <header class="row">
@@ -47,7 +48,7 @@
                             </ul>
                         </div>
                     </nav>
-                    <div class="col-md-3 col-12 mt-5 text-end me-sm-0 me-2 ms-sm-5 ms-0">
+                    <div class="col-md-3 col-12 mt-5 text-end me-sm-0 me-2 ms-sm-5 ms-0 show hide">
                         <button style="color: white; font-size: 2.5em; background-color: transparent; border:none;" @click="basketClick()"><i class="fa-solid fa-cart-shopping"></i></button>
                         <div v-show="basketShow==true" class="position-absolute bg-light basket-show text-start position-relative">
                             <div class="border-bottom border-2 border-dark text-center mb-3 ms-2 me-2 mt-2" v-show="basket.length>0">
@@ -73,27 +74,10 @@
                             </div>
                         </div>
                     </div>
-                    <form action="#" v-show="form" class="translate-middle final-buy">
-                        <div class="white-bg position-relative">
-                            <div class="position-absolute end-0 top-0 translate-middle-x">
-                                <span class="x" @click="close">X</span>
-                            </div>
-                            <div class="text-center mt-5 pt-5">
-                                <input type="text" placeholder="Phone" v-model="phone">
-                                <input type="email" placeholder="Email" v-model="email">
-                                <input type="text" placeholder="Adress(224 Belmont Street APT 220)" v-model="address">
-                            </div>
-                            <div class="d-block text-center w-100">
-                                <span>Total:{{total}}$</span>
-                            </div>  
-                            <div class="d-block text-center w-100">
-                                <button class="ms-3" @click = "submitBuy">Order</button>
-                            </div>
-                        </div>
-                    </form>
                 </header>
+                
                 <section class="main text-center container-md mt-5 mb-5">
-                    <div class="swiper mySwiper">
+                    <div class="swiper mySwiper hide">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide" v-for="shoe in dataArr">
                                 <img :src="shoe.bgIcon" alt="" class="backgr">
@@ -262,7 +246,26 @@
                     </div>
                 </div>
             </div>
+            <form action="#" v-show="form" class="hide translate-middle final-buy">
+                <div class="white-bg position-relative">
+                    <div class="position-absolute end-0 top-0 translate-middle-x">
+                        <span class="x" @click="close"><i class="fa-solid fa-x"></i></span>
+                    </div>
+                    <div class="text-center mt-5 pt-5">
+                        <input type="text" placeholder="Phone" v-model="phone">
+                        <input type="email" placeholder="Email" v-model="email">
+                        <input type="text" placeholder="Adress(224 Belmont Street APT 220)" v-model="address">
+                    </div>
+                    <div class="d-block text-center w-100">
+                        <span>Total:{{total}}$</span>
+                    </div>  
+                    <div class="d-block text-center w-100">
+                        <button class="ms-3" @click = "submitBuy">Order</button>
+                    </div>
+                </div>
+            </form>
         </div>
+        
     </div>
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <script src="index.js" type="module"></script>
