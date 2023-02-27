@@ -265,7 +265,6 @@ input[type="radio"]:checked + .color {
     }
 }
 .basket-show{
-    width: 30em;
     min-height: 30em;
     right: 15px;
     z-index: 200;
@@ -364,7 +363,11 @@ input[type="radio"]:checked + .color {
         width: 80% !important;
     }
 }
-
+@media (max-width:400px){
+    .basket-show{
+        width: 100%;
+    }
+}
 @media (max-width:800px){
     .store{
         width: 100%;
