@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop</title>
     <link rel="icon" type="image/x-icon" href="img/logo.svg">
-    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+    <!-- <script src="https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js"></script> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
     <link rel="stylesheet" href="style/fontawesome.min.css">
     <link rel="stylesheet" href="style/regular.css">
     <link rel="stylesheet" href="style/brands.css">
@@ -254,7 +256,7 @@
                     <div class="text-center mt-5 pt-5">
                         <input type="text" placeholder="Phone" v-model="phone">
                         <input type="email" placeholder="Email" v-model="email">
-                        <input type="text" placeholder="Adress(224 Belmont Street APT 220)" v-model="address">
+                        <input type="text" placeholder="Adress" v-model="address">
                     </div>
                     <div class="d-block text-center w-100">
                         <span>Total:{{total}}$</span>
@@ -268,6 +270,7 @@
         
     </div>
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="index.js" type="module"></script>
 </body>
 </html>

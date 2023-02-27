@@ -1,7 +1,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
 import {getDatabase, ref, onValue} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
 import {getStorage, listAll, ref as sRef, getDownloadURL} from "https://cdnjs.cloudflare.com/ajax/libs/firebase/9.15.0/firebase-storage.js"
-const HomePage = Vue.createApp({
+import {createApp} from 'https://unpkg.com/vue@3.2.47/dist/vue.esm-browser.prod.js'
+const HomePage = createApp({
     data(){
         return{
             dataArr:[],
@@ -26,6 +27,8 @@ const HomePage = Vue.createApp({
     },
     
     mounted(){
+        
+        
         const firebaseConfig = {
             apiKey: "AIzaSyBM6qav41QKCyf4elCPn5i5SMvIDYUSk7o",
             authDomain: "final-js-3cba1.firebaseapp.com",
@@ -98,6 +101,21 @@ const HomePage = Vue.createApp({
         })
     },
     methods:{
+        toast(msg,grav,pos){
+            Toastify({
+                text: msg,
+                duration: 2000,
+                newWindow: true,
+                close: true,
+                gravity: grav,
+                position: pos,
+                stopOnFocus: true, 
+                style: {
+                  background: "black",
+                  fontSize:'2em'
+                }
+              }).showToast();
+        },
         buyPage(val){
             this.btn=true,
             this.btnVal=val
@@ -120,6 +138,7 @@ const HomePage = Vue.createApp({
             this.color=''
         },
         final(){
+            this.basketShow=false
             this.form=true
             
             this.basket.forEach((v)=>{
@@ -139,7 +158,7 @@ const HomePage = Vue.createApp({
             if(this.size!=0 && this.color.length>0){
                this.buyBtn = true
                this.btn=false
-               alert('Item has been added to your cart')
+               this.toast('Item has been added to your cart','top','center')
                this.size=0
                 this.color=''
                 shoe.quantity = 1;
@@ -159,12 +178,13 @@ const HomePage = Vue.createApp({
             return theText.split(';');
         },
         subscribeLetter(){
-            alert('succesfully subscribed')
+            this.toast('Succesfully subscribed','top','left')
+
             this.email=''
         },
         submitBuy(){
-            if(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/.test(this.phone) && /^(\d+) ?([A-Za-z](?= ))? (.*?) ([^ ]+?) ?((?<= )APT)? ?((?<= )\d*)?$/.test(this.address)){
-                alert('Thanks for your purchace')
+            if(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/.test(this.phone)){
+                this.toast('Thanks for your purchace','top','left')
                 this.form=false
                 this.email=''
                 this.phone=''
@@ -172,7 +192,8 @@ const HomePage = Vue.createApp({
                 this.basketShow=false
             }
             else{
-                alert('invalid phone number or address')
+                this.toast('Invalid phone number or adress','top','center')
+
             }
         }
     }
